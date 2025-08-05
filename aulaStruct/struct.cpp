@@ -1,5 +1,5 @@
-#include <iostream> // <stdio.h>
-#include <string> // <string.h>
+#include <iostream>
+#include <string>
 
 #define TAM 5
 
