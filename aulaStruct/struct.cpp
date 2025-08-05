@@ -37,7 +37,5 @@ int main() {
         cout << "hora de entrada: " << garagem[i].horaEntrada << "\n";
         cout << "hora de saida: " << garagem[i].horaSaida << "\n";
     }
-
-    cout << "\n";
     return 0;
 }

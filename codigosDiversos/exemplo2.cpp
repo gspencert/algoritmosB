@@ -19,7 +19,5 @@ int main() {
     for (int i = 0; i < TAM; i++) {
         cout << vetor[i] << "\t";
     }
-
-    cout << "\n";
-    return 1;
+    return 0;
 }

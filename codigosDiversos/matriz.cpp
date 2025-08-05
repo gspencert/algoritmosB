@@ -15,5 +15,8 @@ int main(){
         for ( j = 0; j < 3; j++ ){
             cout << matriz[i][j]<< "\t";
         }
-}
+    }
+
+    cout << "\n";
+    return 0;
 }

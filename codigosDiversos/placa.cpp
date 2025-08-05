@@ -21,6 +21,5 @@ int main(){
         cout << "placa: " << placa << "\n";
     }
 
-    cout << "\n";
     return 0;
 }

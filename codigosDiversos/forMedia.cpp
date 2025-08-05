@@ -15,8 +15,7 @@ int main(){
 
     media /= 3;
 
-    cout << "a media eh " << media; 
-    cout << ("\n");
+    cout << "a media eh " << media;
     
     return 0;
 }
