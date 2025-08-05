@@ -31,6 +31,7 @@ int main(){
         }
         cout << endl;
     }
+    
     cout << "\nQuantidade de pares: " << pares;
     cout << "\nQuantidade de impares: " << impares;
     return 0;
