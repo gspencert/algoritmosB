@@ -11,7 +11,8 @@ int main(){
 
     srand(time(NULL));
 
-    cout << "Leitura da matriz:\n"; 
+    cout << "Leitura da matriz:\n";
+
     for ( i=0 ; i < 4 ; i++){
         for ( j = 0; j < 3; j++ ){
             matriz[i][j] = rand() % 100;
@@ -25,14 +26,16 @@ int main(){
     }
 
     cout << "Impressao da matriz:\n";
+
     for ( i=0 ; i < 4 ; i++){
         for ( j = 0; j < 3; j++ ){
             cout << matriz[i][j] << "\t";
         }
         cout << endl;
     }
-    
+
     cout << "\nQuantidade de pares: " << pares;
     cout << "\nQuantidade de impares: " << impares;
+    
     return 0;
 }
