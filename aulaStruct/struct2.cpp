@@ -105,6 +105,5 @@ int main(){
                 break;
         }
     }
-    cout << "\n";
     return 0;
 }
