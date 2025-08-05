@@ -1,5 +1,5 @@
-#include <iostream> // <stdio.h>
-#include <string> // <string.h>
+#include <iostream>
+#include <string>
 
 #define TAM 5
 
@@ -20,53 +20,91 @@ int main(){
     int opcao;
 
     while (true) {
-        system("cls");
-        cout << "=== MENU ===";
-        cout << "1- ENTRAR CARRO";
-        cout << "2- TIRAR CARRO";
-        cout << "3- LISTAR CARRO";
-        cout << "4- FIM";
-        cout << "Opcao: ";
+        cout << "=== MENU ===\n";
+        cout << "1- adicionar carro\n";
+        cout << "2- tirar carro\n";
+        cout << "3- listar carro\n";
+        cout << "4- fim\n";
+        cout << "opcao: ";
         cin >> opcao;
 
         switch (opcao) {
             case 1:
-                cout << "Entrando carro na garagem...";
+                cout << "entrando carro na garagem...\n";
                 if (qtdCarros == TAM) {
-                    cout << "Nao tem vagas na garagem";
+                    cout << "nao tem vagas na garagem\n";
                 } else {
-                    cout << "Placa: ";
+                    cout << "placa: ";
                     cin >> carro.placa;
-                    cout << "Hora de entrada: ";
-                    cin >> carro.horaEntrada;
 
-                    garagem[qtdCarros] = carro;
-                    qtdCarros++;
-                }
-                break;
-            case 2:
-                cout << "Saindo carro da garagem...";
-                break;
-            case 3:
-                cout << "Listando carro na garagem...";
-                if (qtdCarros == 0) {
-                    cout << "Nao ha carros na garagem";
-                } else {
-                    for (int i = 0 ; i < qtdCarros ; i++) {
-                        cout << "Placa que entrou: " << carro.placa;
-                        cout << "Hora de entrada: " << carro.horaEntrada;
-                        cout << "Imprimindo ticket de entrada.";
+                    bool placaExiste = false;
+                    for(int i = 0; i < qtdCarros; i++) {
+                        if(garagem[i].placa == carro.placa) {
+                            placaExiste = true;
+                            break;
+                        }
+                    }
+                    
+                    if(placaExiste) {
+                        cout << "carro ja esta na garagem!\n";
+                    } else {
+                        cout << "hora de entrada: ";
+                        cin >> carro.horaEntrada;
+
+                        garagem[qtdCarros] = carro;
+                        qtdCarros++;
+                        cout << "carro guardado com sucesso!\n";
                     }
                 }
                 break;
+
+            case 2:
+                cout << "saindo carro da garagem...\n";
+                if (qtdCarros == 0) {
+                    cout << "garagem vazia\n";
+                } else {
+                    cout << "placa do carro que vai tirar: ";
+                    cin >> carro.placa;
+
+                    bool achou = false;
+                    for (int i = 0; i < qtdCarros; i++) {
+                        if (garagem[i].placa == carro.placa) {
+                            garagem[i] = garagem[qtdCarros - 1];
+                            qtdCarros--;
+                            achou = true;
+                            cout << "carro retirado\n";
+                            break;
+                        }
+                    }
+
+                    if (!achou) {
+                        cout << "carro nao encontrado\n";
+                    }
+                }
+                break;
+
+            case 3:
+                cout << "listando carro na garagem...\n";
+                if (qtdCarros == 0) {
+                    cout << "nao ha carros na garagem\n";
+                } else {
+                    for (int i = 0 ; i < qtdCarros ; i++) {
+                        cout << "placa que entrou: " << garagem[i].placa << "\n";
+                        cout << "hora de entrada: " << garagem[i].horaEntrada << "\n";
+                        cout << "imprimindo comprovante de entrada.\n";
+                    }
+                }
+                break;
+
             case 4:
-                cout << "Saindo do programa...";
+                cout << "saindo do programa...\n";
+                return 0;
+
             default:
-                cout << "Opcao Invalida.";
+                cout << "opcao invalida.\n";
                 break;
         }
     }
-
     cout << "\n";
     return 0;
 }
