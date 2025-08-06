@@ -33,15 +33,19 @@ int main(){
 
     }
 
-    cout << "\nelementos da diagonal principal: ";
+    cout << "elementos da diagonal principal: ";
     for ( i = 0 ; i < 5 ; i++ ){
-        cout << diagonalPrincipal[i] << " ";
+        cout << diagonalPrincipal[i] << "\t";
     }
 
-    cout << "\nelementos da diagonal segundaria: ";
+    cout << "\n";
+
+    cout << "elementos da diagonal segundaria: ";
     for ( i = 0 ; i < 5 ; i++ ){
-        cout << diagonalSecundaria[i] << " ";
+        cout << diagonalSecundaria[i] << "\t";
     }
+
+    cout << "\n";
 
     cout << "soma dos elementos da diagonal principal: " << somaPrincipal << "\n";
     cout << "soma dos elementos da diagonal secundaria: " << somaSecundaria << "\n";
