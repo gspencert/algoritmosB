@@ -70,14 +70,14 @@ int main() {
     int opcao;
 
     while (true) {
-        cout << "=== menu ===\n";
-        cout << "1 - contar letra em palavra\n";
-        cout << "2 - validar data\n";
-        cout << "3 - contar vogais em frase\n";
-        cout << "4 - converter frase para maiuscula\n";
-        cout << "5 - verificar se vetor esta ordenado\n";
-        cout << "6 - obter primeiro nome\n";
-        cout << "7 - sair\n";
+        cout << "=== menu ===" << endl;
+        cout << "1 - contar letra em palavra" << endl;
+        cout << "2 - validar data" << endl;
+        cout << "3 - contar vogais em frase" << endl;
+        cout << "4 - converter frase para maiuscula" << endl;
+        cout << "5 - verificar se vetor esta ordenado" << endl;
+        cout << "6 - obter primeiro nome" << endl;
+        cout << "7 - sair" << endl;
         cout << "opcao: ";
         cin >> opcao;
 
