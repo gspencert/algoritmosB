@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm> 
-#define TAM 100 
+#define TAM 100
 
 using namespace std;
 
