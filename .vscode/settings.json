@@ -60,6 +60,7 @@
     "iostream": "cpp",
     "string": "cpp",
     "format": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "algorithm": "cpp"
   }
 }
