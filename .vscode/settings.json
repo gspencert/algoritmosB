@@ -61,6 +61,8 @@
     "string": "cpp",
     "format": "cpp",
     "ostream": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "iosfwd": "cpp",
+    "fstream": "cpp"
   }
 }
