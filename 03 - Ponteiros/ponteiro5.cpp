@@ -2,6 +2,7 @@
 #include <ctime>
 #include <string>
 #define TAM 5
+
 using namespace std;
 
 void preenche_nomes(string *v, int n) {

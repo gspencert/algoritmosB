@@ -21,9 +21,9 @@ void paresImpares(int *v, int n, int *pares, int *impares) {
     *impares = 0;
     for (int i = 0; i < n; i++) {
         if (v[i] % 2 == 0) {
-            *pares = *pares + 1; 
+            *pares++; 
         } else {
-            *impares = *impares + 1;
+            *impares++;
         }
     }
 }
