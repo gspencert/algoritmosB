@@ -14,16 +14,6 @@ struct Carro {
     string modelo;
 };
 
-void listarCarros(Carro vetor[], int qtdCarros);
-void split(string vetor[], string str);
-int conectarBase(const string& nomeBase, Carro vetor[], int tamanho);
-
-void adicionarCarro(Carro vetor[], int tamanho, int& qtdCarros);
-void removerCarro(Carro vetor[], int& qtdCarros);
-void menu(Carro vetor[], int tamanho, int& qtdCarros, const string& nomeBase);
-void salvarBase(const string& nomeBase, Carro vetor[], int qtdCarros);
-
-
 inline void limparBuffer() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
@@ -124,11 +114,28 @@ void removerCarro(Carro vetor[], int& qtdCarros) {
             vetor[indiceRemover] = vetor[qtdCarros - 1];
         }
         qtdCarros--;
-        cout << "Carro com placa " << placaRemover << " removido com sucesso." << endl;
+        cout << "Carro removido com sucesso." << endl;
     } else {
-        cout << "Carro com placa " << placaRemover << " nao encontrado." << endl;
+        cout << "Carro nao encontrado." << endl;
     }
 }
+
+void salvarBase(const string& nomeBase, Carro vetor[], int qtdCarros) {
+    ofstream escritorArquivo(nomeBase); 
+    if (!escritorArquivo.is_open()) {
+        cerr << "ERRO ao salvar arquivo." << endl;
+        return;
+    }
+
+    for (int i = 0; i < qtdCarros; ++i) {
+        escritorArquivo << vetor[i].placa << "," 
+        << vetor[i].horarioEntrada << "," 
+        << vetor[i].comentario << "," 
+        << vetor[i].nota << "," 
+        << vetor[i].modelo << endl;
+    }
+}
+
 
 void menu(Carro vetor[], int tamanho, int& qtdCarros, const string& nomeBase) {
     int opcao;
@@ -142,7 +149,7 @@ void menu(Carro vetor[], int tamanho, int& qtdCarros, const string& nomeBase) {
         cout << "Opcao: ";
         
         if (!(cin >> opcao)) {
-            cout << "Entrada invalida. Por favor, digite um numero." << endl;
+            cout << "Entrada invalida." << endl;
             cin.clear();
             limparBuffer();
             opcao = 0; 
@@ -163,7 +170,7 @@ void menu(Carro vetor[], int tamanho, int& qtdCarros, const string& nomeBase) {
             salvarBase(nomeBase, vetor, qtdCarros); 
             break;
         default:
-            cout << "Opcao invalida...." << endl;
+            cout << "Opcao invalida." << endl;
             break;
         }
         
@@ -179,18 +186,15 @@ int conectarBase(const string& nomeBase, Carro vetor[], int tamanho) {
     procuradorArquivo.open(nomeBase);
 
     if (!procuradorArquivo) {
-        cout << "Arquivo da base de dados nao localizado. Tentando criar um novo." << endl;
+        cout << "Arquivo nao localizado." << endl;
         return 0;
     }
     
     string linha;
     string vetorLinha[5];
     while (getline(procuradorArquivo, linha)) { 
-        if (linha.empty()) continue; 
-        if (qtdCarros == tamanho) {
-            cout << "Vetor lotado. Carros restantes no arquivo foram ignorados." << endl;
-            break; 
-        }
+        if (linha.empty()) continue;
+        if (qtdCarros == tamanho) break;
 
         split(vetorLinha, linha); 
         vetor[qtdCarros].placa = vetorLinha[0];
@@ -198,26 +202,9 @@ int conectarBase(const string& nomeBase, Carro vetor[], int tamanho) {
         vetor[qtdCarros].comentario = vetorLinha[2];
         vetor[qtdCarros].nota = vetorLinha[3];
         vetor[qtdCarros].modelo = vetorLinha[4];
+
         qtdCarros++;
     }
     procuradorArquivo.close();
-    cout << "Quantidade de carros carregados: " << qtdCarros << endl;
     return qtdCarros;
-}
-
-void salvarBase(const string& nomeBase, Carro vetor[], int qtdCarros) {
-    ofstream escritorArquivo(nomeBase); 
-    if (!escritorArquivo.is_open()) {
-        cerr << "ERRO: Nao foi possivel abrir o arquivo para salvar os dados." << endl;
-        return;
-    }
-
-    for (int i = 0; i < qtdCarros; ++i) {
-        escritorArquivo << vetor[i].placa << ", " << vetor[i].horarioEntrada << ", " 
-        << vetor[i].comentario << ", Nota: " << vetor[i].nota << ", " << vetor[i].modelo << endl;
-    }
-
-    escritorArquivo.flush(); 
-    escritorArquivo.close();
-    cout << "Dados salvos em " << nomeBase << endl;
 }
