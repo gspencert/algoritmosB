@@ -82,16 +82,20 @@ int conectarBase(string baseDados, Pessoa vetor[], int tamanho) {
     //le o arquivo capturando as pessoas linha a linha
 	string linha;
     string vetorLinha[2];
-	while (!procuradorArquivo.eof()) {
-		getline(procuradorArquivo, linha); //lendo a linha inteira
-        //linha = Alexandre Zamberlan,alexz@ufn.edu.br
-        split(vetorLinha, linha, ",");
-        //vetorLinha[0] = "Alexandre Zamberlan"
-        //vetorLinha[1] = "alexz@ufn.edu.br"
-        vetor[qtdPessoas].nome = vetorLinha[0];
-        vetor[qtdPessoas].email = vetorLinha[1];
-        qtdPessoas += 1;
-	}
+	
+    while (getline(procuradorArquivo, linha)) {
+    if (linha.empty()) continue; // ignora linhas vazias
+
+    string vetorLinha[2];
+    split(vetorLinha, linha, ",");
+
+    vetor[qtdPessoas].nome = vetorLinha[0];
+    vetor[qtdPessoas].email = vetorLinha[1];
+
+    qtdPessoas++;
+    if (qtdPessoas == tamanho) break;
+    }
+
 	procuradorArquivo.close();
     cout << "Quantidade " << qtdPessoas << endl;
     return qtdPessoas;
