@@ -66,37 +66,31 @@ void split(string vetor[], string str, string deli = " ") {
 
 
 int conectarBase(string baseDados, Pessoa vetor[], int tamanho) {
+    
     int qtdPessoas = 0;
-    ifstream procuradorArquivo; //tipo de arquivo para leitura
-    procuradorArquivo.open(baseDados); 
 
-    if (!procuradorArquivo) {
+    ifstream procuradorArquivo(baseDados);
+    if (!procuradorArquivo.is_open()) {
         cout << "Arquivo da base de dados não localizado. Programa encerrado." << endl;
         exit(0);
-    } 
-    if (qtdPessoas == tamanho) {
-        cout << "Vetor lotado. Programa encerrado." << endl;
-        exit(0);
     }
 
-    //le o arquivo capturando as pessoas linha a linha
-	string linha;
+    string linha;
     string vetorLinha[2];
-	
+
     while (getline(procuradorArquivo, linha)) {
-    if (linha.empty()) continue; // ignora linhas vazias
+        if (linha.empty()) continue;
 
-    string vetorLinha[2];
-    split(vetorLinha, linha, ",");
+        split(vetorLinha, linha, ",");
 
-    vetor[qtdPessoas].nome = vetorLinha[0];
-    vetor[qtdPessoas].email = vetorLinha[1];
+        vetor[qtdPessoas].nome  = vetorLinha[0];
+        vetor[qtdPessoas].email = vetorLinha[1];
 
-    qtdPessoas++;
-    if (qtdPessoas == tamanho) break;
+        qtdPessoas++;
+        if (qtdPessoas >= tamanho) break;
     }
 
-	procuradorArquivo.close();
+    procuradorArquivo.close();
     cout << "Quantidade " << qtdPessoas << endl;
     return qtdPessoas;
 }
