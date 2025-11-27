@@ -4,6 +4,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+typedef struct {
+    string nome;
+    string email;
+} Pessoa;
+
 void listarPessoas(Pessoa vetor[], int qtdPessoas) {
     cout << "Listar pessoas...." << endl;
     for (int i = 0; i < qtdPessoas; i++) {

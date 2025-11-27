@@ -4,16 +4,11 @@
 
 using namespace std;
 
-typedef struct {
-    string nome;
-    string email;
-} Pessoa;
-
 #include "meusMetodos.h"
 
 int main() {
     Pessoa vetor[TAM];
-    int qtdPessoas, tamanho;
+    int qtdPessoas;
     string baseDados = "base.csv";
 
     qtdPessoas = conectarBase(baseDados, vetor, TAM);
